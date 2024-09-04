@@ -12,13 +12,24 @@ class Vector:
   @property
   def y(self):
     return self.__y
+  @x.setter
+  def x(self, x):
+    self.__x = x
+  @y.setter
+  def y(self, y):
+    self.__y = y
   def setter(self, x, y):
     self.__x = x
     self.__y = y
-  def getLængde(self):
+  def getLength(self):
     return(sqrt(self.__x**2+self.__y**2))
   def prikProdukt(self, Prik):
     return Vector(self.__x * Prik.__x, self.__y * Prik.__y)
+  def normalize(self):
+    return Vector(self.__x/self.getLength(), self.__y/self.getLength())
+  def distance(self, other):
+    differencVector = Vector(other.x - self.__x, other.y - self.__y)
+    return differencVector.getLength()
   def __add__(self, other):
     return Vector(self.__x + other.__x, self.__y + other.__y)
   def __sub__(self, other):
