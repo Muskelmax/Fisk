@@ -1,7 +1,7 @@
 from fish import *
 import random
 
-#test
+#test 2
 
 class Flock:
   def __init__(self, amount):
@@ -15,7 +15,6 @@ class Flock:
   def update(self):
     for fish in self.__fishies:
       fish.update()
-      fish.bordercheck()
   def react(self, leftClick, rightClick):
     for fish in self.__fishies:
       if(leftClick == True):

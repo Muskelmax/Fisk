@@ -12,11 +12,16 @@ class Fish:
   def update(self):
     self.__pos = self.__pos + self.__vel
     self.__vel = self.__vel/self.__vel.getLength()*3.5
+    self.__vel. x = self.bordercheck().x
+    self.__vel. y = self.bordercheck().y
   def bordercheck(self):
     if ((self.__pos.x > 750) or (self.__pos.x < -50)):
-      self.__vel.setter(self.__vel.x * (-2), self.__vel.y*2)
-    if ((self.__pos.y > 590) or (self.__pos.y < 0)):
-      self.__vel.setter(self.__vel.x*2, self.__vel.y * (-2))
+      return Vector(self.__vel.x * (-2), self.__vel.y*2)
+    elif ((self.__pos.y > 590) or (self.__pos.y < 0)):
+      return Vector(self.__vel.x*2, self.__vel.y * (-2))
+    else:
+      return self.__vel
+
   def render(self, screen):
     screen.blit(self.__fish_img,(self.__pos.x, self.__pos.y))
   def attract(self):
