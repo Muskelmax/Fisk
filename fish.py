@@ -11,7 +11,7 @@ class Fish:
     self.__fish_img = pygame.transform.flip(self.__fish_img, True, False)
   def update(self):
     self.__pos = self.__pos + self.__vel
-    self.__vel = self.__vel/self.__vel.getLængde()*3.5
+    self.__vel = self.__vel/self.__vel.getLength()*3.5
   def bordercheck(self):
     if ((self.__pos.x > 750) or (self.__pos.x < -50)):
       self.__vel.setter(self.__vel.x * (-2), self.__vel.y*2)
