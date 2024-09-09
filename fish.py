@@ -2,10 +2,11 @@ from vektor import *
 import pygame
 
 class Fish:
-  def __init__(self, posX, posY, velX, velY, img='./fish.svg'):
+  def __init__(self, posX, posY, velX, velY, screen, img='./fish.svg'):
     self.__pos = Vector(posX, posY)
     self.__vel = Vector(velX, velY)
     self.__img = img
+    self.__screen = screen
     self.__fish_img = pygame.image.load(self.__img)
     self.__fish_img = pygame.transform.scale(self.__fish_img, (50,50))
     self.__fish_img = pygame.transform.flip(self.__fish_img, True, False)
@@ -22,8 +23,8 @@ class Fish:
     else:
       return self.__vel
 
-  def render(self, screen):
-    screen.blit(self.__fish_img,(self.__pos.x, self.__pos.y))
+  def render(self):
+    self.__screen.blit(self.__fish_img,(self.__pos.x, self.__pos.y))
   def attract(self):
     self.__vel = self.__vel + ((Vector(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])) - self.__pos)*0.0004
   def avoid(self):

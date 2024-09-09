@@ -18,9 +18,6 @@ class Vector:
   @y.setter
   def y(self, y):
     self.__y = y
-  def setter(self, x, y):
-    self.__x = x
-    self.__y = y
   def getLength(self):
     return(sqrt(self.__x**2+self.__y**2))
   def prikProdukt(self, Prik):
