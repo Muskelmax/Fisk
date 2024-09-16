@@ -11,13 +11,15 @@ class Flock:
     for i in range(0, self.__amount + 1):
       self.__fishies.append(Fish(random.random()*600, random.random()*500, random.random()*5,random.random()*5, screen, scale))
     self.__boidR = boidR
+    self.__useVision  = False
   def draw(self):
     for fish in self.__fishies:
       fish.render()
   def update(self):
-    self.updateVision()
+    if(self.__useVision):
+      self.updateVision()
     for fish in self.__fishies:
-      fish.update()
+      fish.update(self.findNeighbours(fish))
   def react(self, leftClick, rightClick):
     for fish in self.__fishies:
       if(leftClick == True):

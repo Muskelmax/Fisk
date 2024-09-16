@@ -8,7 +8,7 @@ def main():
   pygame.init()
   clock = pygame.time.Clock()
   screen = pygame.display.set_mode((800, 600))
-  fisk = Flock(100, screen, 50, 150)
+  fisk = Flock(120, screen, 50, 50)
   running = True
   while running:
     screen.fill((0, 128, 255))
