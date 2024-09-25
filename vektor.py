@@ -23,7 +23,7 @@ class Vector:
   def prikProdukt(self, Prik):
     return Vector(self.__x * Prik.__x, self.__y * Prik.__y)
   def normalize(self):
-    return Vector(self.__x/self.getLength(), self.__y/self.getLength())
+    return self/self.getLength()
   def distance(self, other):
     differencVector = Vector(other.x - self.__x, other.y - self.__y)
     return differencVector.getLength()

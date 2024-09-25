@@ -40,9 +40,9 @@ class Fish:
     self.__vision = vision
   def update(self, other_fishes):
     #Adding adjustments from boids algorithm
-    self.__acc += self.seperation(other_fishes, 22)
-    self.__acc += self.allignment(other_fishes, 0.04) 
-    self.__acc += self.cohesion(other_fishes, 0.10)
+    self.__acc += self.seperation(other_fishes, 100) #22
+    # self.__acc += self.allignment(other_fishes, 0.04) 
+    # self.__acc += self.cohesion(other_fishes, 0.10)
     self.screenConfinementHandler(2)
     self.__vel += self.__acc
     #limiting speed
@@ -76,15 +76,15 @@ class Fish:
   def screenConfinementX2(self):
     if ((self.__pos.x + self.__scale < self.__vision)):
       return Vector(self.__vel.x + (1 - (self.__pos.x/self.__vision))*self.__p, self.__vel.y)
-    elif (self.__pos.x + self.__scale > self.__screen.get_width()-self.__vision):
-      return Vector(self.__vel.x - (1 - ((self.__pos.x-self.__screen.get_width())/self.__vision))*self.__p, self.__vel.y)
+    elif (self.__pos.x + self.__scale - 50 > self.__screen.get_width()-self.__vision):
+      return Vector(self.__vel.x - (1 - ((self.__pos.x-self.__screen.get_width()+50)/self.__vision))*self.__p, self.__vel.y)
     else:
       return self.__vel
   def screenConfinementY2(self):
     if ((self.__pos.y < self.__vision)):
       return Vector(self.__vel.x, self.__vel.y + (1 - (self.__pos.y/self.__vision))*self.__p)
-    elif (self.__pos.y > self.__screen.get_height()-self.__vision):
-      return Vector(self.__vel.x, self.__vel.y - (1 - ((self.__pos.y-self.__screen.get_height())/self.__vision))*self.__p)
+    elif (self.__pos.y - 20 > self.__screen.get_height()-self.__vision):
+      return Vector(self.__vel.x, self.__vel.y - (1 - ((self.__pos.y-self.__screen.get_height()+20)/self.__vision))*self.__p)
     else:
       return self.__vel
     
@@ -101,15 +101,16 @@ class Fish:
       self.__pos = Vector(self.__pos.x, self.__screen.get_height())
   def render(self):
     self.__screen.blit(self.__fish_img,(self.__pos.x, self.__pos.y))
+  
   def seperation(self, other_fishes, seperation_factor):
     seperation_vector = Vector(0, 0)
     total_vector = Vector(0, 0)
     if(len(other_fishes) != 0):
       for other in other_fishes:
         if(self.__pos.distance(other.pos) != 0):
-          total_vector = total_vector + (self.__pos-other.pos)*((1/(self.__pos.distance(other.pos))**1.5))
+          total_vector += (self.__pos-other.pos).normalize()/((self.__pos.distance(other.pos))**1.5)
       # return seperation_vector
-      seperation_vector = (total_vector/len(other_fishes))*seperation_factor
+      seperation_vector = total_vector*seperation_factor
     return seperation_vector
   
   def allignment(self, other_fishes, allignment_factor):
