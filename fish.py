@@ -41,8 +41,8 @@ class Fish:
   def update(self, other_fishes):
     #Adding adjustments from boids algorithm
     self.__acc += self.seperation(other_fishes, 100) #22
-    # self.__acc += self.allignment(other_fishes, 0.04) 
-    # self.__acc += self.cohesion(other_fishes, 0.10)
+    self.__acc += self.allignment(other_fishes, 0.01) 
+    self.__acc += self.cohesion(other_fishes, 0.10)
     self.screenConfinementHandler(2)
     self.__vel += self.__acc
     #limiting speed
