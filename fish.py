@@ -1,6 +1,7 @@
 from vektor import *
 import pygame
 
+
 class Fish:
   def __init__(self, posX, posY, velX, velY, screen, scale, img='./fish.svg'):
     self.__pos = Vector(posX, posY)
@@ -38,11 +39,11 @@ class Fish:
   @vision.setter
   def vision(self, vision):
     self.__vision = vision
-  def update(self, other_fishes):
+  def update(self, other_fishes, sepV, allV, cohV):
     #Adding adjustments from boids algorithm
-    self.__acc += self.seperation(other_fishes, 100) #22
-    self.__acc += self.allignment(other_fishes, 0.01) 
-    self.__acc += self.cohesion(other_fishes, 0.10)
+    self.__acc += self.seperation(other_fishes, sepV) #22
+    self.__acc += self.allignment(other_fishes, allV * 0.0001) 
+    self.__acc += self.cohesion(other_fishes, cohV * 0.001)
     self.screenConfinementHandler(2)
     self.__vel += self.__acc
     #limiting speed

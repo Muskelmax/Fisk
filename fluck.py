@@ -15,11 +15,11 @@ class Flock:
   def draw(self):
     for fish in self.__fishies:
       fish.render()
-  def update(self):
+  def update(self, sepV, allV, cohV):
     if(self.__useVision):
       self.updateVision()
     for fish in self.__fishies:
-      fish.update(self.findNeighbours(fish))
+      fish.update(self.findNeighbours(fish), sepV, allV, cohV)
   def react(self, leftClick, rightClick):
     for fish in self.__fishies:
       if(leftClick == True):
