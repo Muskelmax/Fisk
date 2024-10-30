@@ -16,7 +16,6 @@ class Fish:
     self.__fish_img = pygame.transform.flip(self.__fish_img, True, False)
     #attributes for screen confinement
     #maximal distance to border at which effect takes place
-    self.__maxVision = 100
     #distance to border at which effect takes place
     self.__vision = 100
     #strength of border avoidance
@@ -30,15 +29,6 @@ class Fish:
   @property
   def vel(self):
     return self.__vel
-  @property
-  def maxVision(self):
-    return self.__maxVision
-  @property
-  def vision(self):
-    return self.__visio
-  @vision.setter
-  def vision(self, vision):
-    self.__vision = vision
   def update(self, other_fishes, sepV, allV, cohV):
     #Adding adjustments from boids algorithm
     self._acc += self.seperation(other_fishes, sepV) #22
